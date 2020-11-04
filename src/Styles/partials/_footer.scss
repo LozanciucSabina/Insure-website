@@ -1,0 +1,125 @@
+$image-urls: (
+  "mobile": url("../images/bg-pattern-footer-mobile.svg"),
+  "desktop": url("../images/bg-pattern-footer-desktop.svg"),
+);
+
+@mixin footer-decoration($device) {
+  $url: map-get($image-urls, $device);
+  background-image: #{$url};
+  background-position: bottom right;
+  background-size: cover;
+  background-repeat: no-repeat;
+}
+
+.footer {
+  // height: 64.0625rem;
+  position: relative;
+  float: left;
+  clear: both;
+  width: 100%;
+  background-color: $veryLightGray;
+
+  &__decoration {
+    @include footer-decoration(mobile);
+    width: 100%;
+    height: calc(126.275px + 27.54vw);
+    position: absolute;
+    @include breakpoint-up(medium) {
+      @include footer-decoration(desktop);
+      width: 550px;
+      height: 255px;
+    }
+  }
+
+  &__line {
+    position: relative;
+    width: calc(55.35px + 73.24vw);
+    height: 1px;
+    margin: auto;
+    background-color: $darkGrayishViolet;
+    margin-top: 35px;
+  }
+
+  &__logo {
+    display: block;
+    position: relative;
+    margin: auto;
+    margin-top: calc(95.395px - 1.972vw);
+    @include breakpoint-up(large) {
+      display: inline-block;
+      margin-left: calc(-54.4px + 16vw);
+    }
+  }
+
+  &__icons {
+    width: fit-content;
+    position: relative;
+    margin: auto;
+    margin-top: 2rem;
+    > svg {
+      &:not(:last-child) {
+        margin-right: 1rem;
+      }
+      &:hover {
+        path {
+          fill: $veryDarkViolet;
+        }
+      }
+    }
+    @include breakpoint-up(large) {
+      float: right;
+      margin-top: calc(95.395px - 1.972vw);
+      margin-right: calc(-54.4px + 16vw);
+    }
+  }
+
+  &__sections {
+    position: relative;
+    margin-bottom: 60px;
+    section {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+
+      h4 {
+        font-family: "Karla";
+        font-size: 14px;
+        color: $darkGrayishViolet;
+        margin: 40px 0;
+      }
+
+      a {
+        font-family: "Karla";
+        font-size: 13px;
+        font-weight: bold;
+        color: $veryDarkViolet;
+        letter-spacing: 0.1em;
+        margin-bottom: 14px;
+        &:hover{
+          text-decoration: underline $veryDarkViolet;
+        }
+      }
+
+      :last-child {
+        margin-bottom: 0;
+      }
+    }
+    @include breakpoint-up(medium) {
+      & {
+        display: grid;
+        grid-template-columns: repeat(auto-fit, minmax(120px, 1fr));
+        width: calc(38.15px + 80.7vw);
+        margin-left: auto;
+        margin-right: auto;
+      }
+    }
+    @include breakpoint-up(large) {
+      & {
+        margin-left: calc(-54.4px + 16vw);
+        section {
+          align-items: start;
+        }
+      }
+    }
+  }
+}

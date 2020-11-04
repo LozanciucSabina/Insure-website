@@ -1,0 +1,123 @@
+//Colors
+
+$darkViolet: hsl(256, 26%, 20%);
+$grayishBlue: hsl(216, 30%, 68%);
+
+$veryDarkViolet: hsl(270, 9%, 17%);
+$darkGrayishViolet: hsl(273, 4%, 51%);
+$veryLightGray: hsl(0, 0%, 98%);
+
+$breakpoint-up: (
+  // 450 721 1041 1441
+  "small": "28.125rem",
+  "medium": "45.0625rem",
+  "large": "65.0625rem",
+  "xlarge": "90.0625rem"
+);
+
+$breakpoint-down: (
+  // 720 1040 1440
+  "small": "45rem",
+  "medium": "65rem",
+  "large": "90rem"
+);
+
+@mixin breakpoint-up($size) {
+  @if map-get($breakpoint-up, $size) {
+    @media (min-width: map-get($breakpoint-up, $size)) {
+      @content;
+    }
+  } @else {
+    @media (min-width: $size) {
+      @content;
+    }
+  }
+}
+
+@mixin breakpoint-down($size) {
+  @if map-get( $breakpoint-down, $size){
+    @media (max-width: map-get( $breakpoint-down, $size)) {
+    @content;
+    }
+  } @else {
+    @media (max-width: $size) {
+      @content;
+    }
+  }
+}
+
+$image-urls: (
+  "mobile": url("../images/image-intro-mobile.jpg"),
+  "desktop": url("../images/image-intro-desktop.jpg"),
+);
+
+@mixin hero-image($device) {
+  $url: map-get($image-urls, $device);
+  background-image: #{$url};
+  background-position: center center;
+  background-size: cover;
+}
+
+@function map-deep-get($map, $keys...) {
+  @each $key in $keys {
+    $map: map-get($map, $key);
+  }
+  @return $map;
+}
+
+$decorative-img: (
+  mobile: (
+    "L": url("../images/bg-pattern-intro-left-mobile.svg"),
+    "R": url("../images/bg-pattern-intro-right-mobile.svg"),
+  ),
+  desktop: (
+    "L": url("../images/bg-pattern-intro-left-desktop.svg"),
+    "R": url("../images/bg-pattern-intro-right-desktop.svg"),
+  ),
+);
+
+@mixin decorative-hero-imgs($device, $side) {
+  $url: map-deep-get($decorative-img, $device, $side);
+  background-image: #{$url};
+  background-position: center center;
+  background-size: contain;
+  background-repeat: no-repeat;
+}
+
+@mixin heading-medium {
+  @include breakpoint-up(medium) {
+    width: calc(0px + 40vw);
+    margin: 0;
+    margin-top: calc(-20px + 6vw);
+    margin-left: calc(-145px + 40vw); //+
+    font-size: calc(5px + 5vw);
+    text-align: left;
+    @content;
+  }
+}
+
+@mixin heading-large {
+  @include breakpoint-up(large) {
+    width: calc(7rem + 30vw);
+    margin-left: calc(-65.4px + 16vw);
+    margin-top: calc(-9px + 5vw);
+    // margin-top: 63px;
+    // width: 540px;
+
+    font-size: calc(14.4px + 4vw);
+    line-height: 89%;
+    // font-size: 72px;
+    // line-height: 64.08px;
+    @content;
+  }
+}
+
+@mixin line-large {
+  @include breakpoint-up(large) {
+    & {
+      margin-left: calc(-65.4px + 16vw);
+      margin-top: calc(-10.2px + 8vw);
+      @content;
+    }
+  }
+}

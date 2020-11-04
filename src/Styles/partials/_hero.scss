@@ -1,0 +1,212 @@
+.hero {
+  @include breakpoint-up(medium) {
+    display: flex;
+  }
+  position: relative;
+  width: 100%;
+  float: left;
+  clear: both;
+
+ 
+  &__image {
+    @include hero-image(mobile);
+    width: 100%;
+    height: calc(24.625rem + 15vw);
+
+    @include breakpoint-up(small) {
+      @include hero-image(desktop);
+    }
+
+    @include breakpoint-up(medium) {
+      width: calc(17.5rem + 21vw);
+      height: calc(18.125rem + 28vw);
+      position: absolute;
+      left: 50%;
+      z-index: 1;
+      margin-top: calc(0.3125rem + 22vw);
+      transform: translate(-50%);
+    }
+
+    @include breakpoint-up(large) {
+      width: calc(6.75rem + 30vw);
+      height: calc(13.625rem + 30vw);
+      right: 0;
+      left: unset;
+      margin-top: calc(-0.6375rem + 8vw);
+      margin-right: calc(-4.0875rem + 16vw);
+      transform: unset;
+    }
+  }
+
+
+  &__container {
+    width: 100%;
+    height: calc(31.25rem + 10vw);
+    position: relative;
+    background-color: $darkViolet;
+    float: left;
+    clear: both;
+
+    @include breakpoint-up(medium) {
+      display: block;
+      height: calc(33.125rem + 50vw);
+    }
+
+    @include breakpoint-up(large) {
+      height: calc(9.6875rem + 34vw);
+    }
+  }
+
+
+  &__image-left {
+    @include decorative-hero-imgs("mobile", "L");
+    min-width: 10.5rem;
+    width: 10.5rem;
+    min-height: 10.3125rem;
+
+    @include breakpoint-up(medium) {
+      @include decorative-hero-imgs("desktop", "L");
+      width: 12.1875rem;
+      height: 31.5rem;
+      position: absolute;
+      top: 0;
+      left: 0;
+      z-index: 1;
+      margin-top: calc(16.25rem + 50vw);
+    }
+
+    @include breakpoint-up(large) {
+      width: 12.1875rem;
+      height: 31.5rem;
+      margin-top: 26.875rem;
+    }
+  }
+
+
+  &__image-right {
+    @include decorative-hero-imgs("mobile", "R");
+    width: 7.75rem;
+    height: 20.625rem;
+    position: absolute;
+    right: 0;
+    bottom: -11rem;
+    z-index: 1;
+
+    @include breakpoint-up(medium) {
+      @include decorative-hero-imgs("desktop", "R");
+      width: calc(7.5rem + 28vw);
+      height: calc(13.125rem + 25vw);
+      bottom: unset;
+      top: 0;
+      right: 0;
+      background: {
+        position: bottom;
+        size: cover;
+      }
+    }
+
+    @include breakpoint-up(large) {
+      width: calc(8.125rem + 21vw);
+      height: calc(10.625rem + 23vw);
+    }
+  }
+
+
+  &__line {
+    background-color: $veryLightGray;
+    margin-top: calc(0rem + 4vw);
+    margin-left: calc(-9.0625rem + 40vw);
+    @include line-large;
+  }
+
+  
+
+  &__heading {
+    position: relative;
+    z-index: 1;
+    margin: {
+      top: -4.25rem;
+      left: 0.9375rem;
+      right: 0.9375rem;
+    }
+    color: $veryLightGray;
+    text-align: center;
+    @include heading-medium;
+    @include heading-large;
+    
+
+   
+  }
+
+
+  &__paragraph {
+    color: white;
+    text-align: center;
+
+    margin-top: 1rem;
+    margin-left: calc(0.5rem + 2vw);
+    margin-right: calc(0.5rem + 2vw);
+
+    @include breakpoint-up(medium) {
+      width: calc(11.25rem + 35vw);
+      position: relative;
+      margin: 0;
+      z-index: 1;
+      margin-left: calc(-9.0625rem + 40vw); //+
+      margin-top: calc(15rem + 40vw);
+      font-size: calc(0.875rem + 0.245vw);
+      text-align: left;
+    }
+
+    @include breakpoint-up(large) {
+      width: calc(10rem + 25vw);
+      margin-left: calc(-4.0875rem + 16vw);
+      margin-top: 2.0625rem;
+    }
+  }
+
+
+  &__button {
+    width: 9.125rem;
+    position: relative;
+    left: 50%;
+    padding: 0.6875rem 1rem;
+    margin-top: 2.25rem;
+    margin-bottom: 5.625rem;
+    border: {
+      width: 0.125rem;
+      style: solid;
+      color: $veryLightGray;
+      image: none;
+    }
+    background-color: unset;
+    font-family: "Karla";
+    font-size: 0.875rem;
+    color: $veryLightGray;
+    letter-spacing: 0.085em;
+    transform: translate(-50%);
+    &:hover {
+      color: $veryDarkViolet;
+      background-color: $veryLightGray;
+    }
+    
+    @include breakpoint-up(medium) {
+      width: 9.125rem;
+      height: 2.5rem;
+      left: 0;
+      z-index: 1;
+      margin: 0;
+      margin-left: calc(-9.0625rem + 40vw); 
+      margin-top: 2.0625rem;
+      text-align: center;
+      transform: unset;
+      
+    }
+
+    @include breakpoint-up(large) {
+      margin-left: calc(-4.0875rem + 16vw);
+      top: 2.0625rem;
+      transform: unset;
+    }
+  }
+}

@@ -1,0 +1,131 @@
+body {
+  &.no-scroll {
+    overflow: hidden;
+  }
+  margin: 0;
+  overflow-x: hidden;
+}
+
+html {
+  font-size: 100%;
+  box-sizing: border-box;
+}
+
+*,
+*::before,
+*::after {
+  box-sizing: inherit;
+  margin: 0;
+}
+
+a {
+  text-decoration: none;
+  display: inline-block;
+  color: unset;
+}
+
+h1,
+p,
+h3,
+h2 {
+  margin: 0;
+  margin-block-start: 0;
+  margin-block-end: 0;
+  margin-inline-start: 0;
+  margin-inline-end: 0;
+  font-weight: normal;
+}
+
+p {
+  font-family: "Karla";
+}
+
+.line {
+  width: 9.375rem;
+  height: 0.0625rem;
+}
+$min-vw: 23.4375; //375px
+$max-vw: 90; //1440px
+.heading {
+  font: {
+    family: "DM Serif Display", serif;
+    size: calc(
+      3rem + (100vw - #{$min-vw}rem) / (#{$max-vw} - #{$min-vw}) * (4.5 - 3)
+    ); //#{$min-font-size}rem + ((100vw - #{$min-vw}rem) / (#{$max-vw} - #{$min-vw})) * (#{$max-font-size} - #{$min-font-size}));
+  }
+  line-height: 3rem;
+}
+
+.paragraph {
+  font: {
+    family: "Karla", sans-serif;
+    size: calc(
+      1rem + (100vw - #{$min-vw}rem) / (#{$max-vw} - #{$min-vw}) * (1 - 0.975)
+    ); //calc(2.25rem + (100vw - 23.4375rem) / (90 - 23.4375) * (3.25 - 2.25));
+    weight: 400;
+  }
+  line-height: 1.5625rem;
+  letter-spacing: 0.0425rem;
+}
+
+@mixin button-styles($bg-color, $color, $bg-hvr, $clr-hvr) {
+  background-color: #{$bg-color};
+  border-color: $color;
+  color: $color;
+  &:hover {
+    background-color: $bg-hvr;
+    color: $clr-hvr;
+  }
+}
+
+.button {
+  height: 2.5rem;
+  width: 9.125rem;
+  border-width: 0.125rem;
+  cursor: pointer;
+  font: {
+    size: 0.8125rem;
+    weight: bold;
+    family: "Karla";
+  }
+  letter-spacing: 0.0375rem;
+  color: $darkGrayishViolet;
+  border-style: solid;
+}
+
+.flex {
+  display: flex;
+  &-ai-c {
+    align-items: center;
+  }
+
+  &-jc-c {
+    justify-content: center;
+  }
+
+  &-jc-sb {
+    justify-content: space-between;
+  }
+
+  &-dir-c {
+    flex-direction: column;
+  }
+
+  &-dir-r {
+    flex-direction: row;
+  }
+}
+
+.hide-for-mobile {
+  @include breakpoint-down(small) {
+    display: none;
+    visibility: hidden;
+  }
+}
+
+.hide-for-desktop {
+  @include breakpoint-up(medium) {
+    visibility: hidden;
+    display: none;
+  }
+}
